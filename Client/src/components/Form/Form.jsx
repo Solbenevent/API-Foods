@@ -57,14 +57,21 @@ const CreateRecipe = () => {
 
   //RENDER
   return (
-    <div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group controlId="name">
+    <div className="container-fluid" style={{ backgroundColor: "steelblue" }}>
+      <h2 className="text-center mb-4">¡Crea tu Receta!</h2>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          backgroundColor: "gainsboro",
+          padding: "1rem",
+          borderRadius: "10px",
+        }}
+      >
+        <Form.Group>
           <FormLabel>Nombre:</FormLabel>
           <Form.Control
             type="text"
             id="inputName"
-            aria-describedby="nameHelpBlock"
             {...register("name", {
               required: {
                 value: true,
@@ -84,48 +91,66 @@ const CreateRecipe = () => {
             {errors.name && <span>{errors.name.message}</span>}
           </Form.Text> */}
           {errors.name && (
-            <FormText id="nameHelpBlock" className="text-danger">
-              {errors.name.message}
-            </FormText>
+            <FormText className="text-danger">{errors.name.message}</FormText>
           )}
         </Form.Group>
 
         <Form.Group>
-          <FormLabel htmlFor="image">URL de Imagen:</FormLabel>
-          <input
-            type="text"
+          <FormLabel htmlFor="image">Imagen:</FormLabel>
+          <Form.Control
+            className="mb-3"
+            type="file"
+            id="inputImage"
             {...register("image", {
               required: true,
             })}
           />
-          <Form.Text>
+          {/* <Form.Text>
             {errors.image && <span>La imagen es requerida</span>}
-          </Form.Text>
+          </Form.Text> */}
+          {errors.image && (
+            <Form.Text className="text-danger">
+              La imagen es requerida
+            </Form.Text>
+          )}
         </Form.Group>
 
         <Form.Group>
-          <FormLabel htmlFor="summary">Descripción</FormLabel>
-          <textarea
+          <FormLabel htmlFor="summary">Descripción:</FormLabel>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            className="form-control"
+            id="inputSummary"
             {...register("summary", {
               required: true,
             })}
           />
-          <Form.Text>
+          {/* <Form.Text>
             {errors.summary && <span>La descripción es requerida</span>}
-          </Form.Text>
+          </Form.Text> */}
+          {errors.summary && (
+            <Form.Text className="text-danger">
+              La descripción es requerida
+            </Form.Text>
+          )}
         </Form.Group>
 
         <Form.Group>
           <FormLabel htmlFor="healthScore">Puntuación de salud:</FormLabel>
-          <input
+          <Form.Control
             type="number"
             {...register("healthScore", {
               required: true,
             })}
           />
-          <Form.Text>
-            {errors.healthScore && <span>La puntuación es requerida</span>}
-          </Form.Text>
+          {/* <Form.Text>
+            {errors.healthScore && <span>La puntuación es requerida</span>}</Form.Text> */}
+          {errors.healthScore && (
+            <Form.Text className="text-danger">
+              La puntuación es requerida
+            </Form.Text>
+          )}
         </Form.Group>
 
         <Form.Group>
@@ -137,15 +162,20 @@ const CreateRecipe = () => {
               required: true,
             })}
           />
-          <Form.Text>
+          {/* <Form.Text>
             {errors.steps && <span>Al menos un paso es requerida</span>}
-          </Form.Text>
+          </Form.Text> */}
+          {errors.steps && (
+            <Form.Text className="text-danger">
+              Al menos un paso es requerido
+            </Form.Text>
+          )}
         </Form.Group>
 
         <Form.Group className="container-form-diet">
-          <FormLabel className="form-diet">Selecciona una dieta:</FormLabel>
+          <FormLabel className="mb-2">Selecciona una dieta:</FormLabel>
           {diets?.map((diet, index) => (
-            <Form.Check key={diet}>
+            <Form.Check key={diet} className="mb-2 form-switch">
               <Form.Check.Input
                 key={index}
                 type="checkbox"
@@ -158,7 +188,7 @@ const CreateRecipe = () => {
                   },
                 })}
               />
-              <FormLabel>{diet}</FormLabel>
+              <FormLabel className="mb-2">{diet}</FormLabel>
             </Form.Check>
           ))}
 
@@ -171,9 +201,11 @@ const CreateRecipe = () => {
             </Form.Text>
           )}
         </Form.Group>
-        <Button type="submit" variant="primary">
-          Crear
-        </Button>
+        <div className="text-center mt-4">
+          <Button type="submit" variant="primary" size="lg">
+            Crear
+          </Button>
+        </div>
       </Form>
     </div>
   );
