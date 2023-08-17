@@ -43,14 +43,23 @@ const reducer = (state = initialState, {type, payload}) => {
             ...state,
             diets: payload
         }
-    case FILTER_BY_DIETS:
-        const allRecipesFiltered = state.recipes.filter(
-            (recipe) => recipe.diets.includes(payload)
-          );
-          return {
-            ...state,
-            recipes: allRecipesFiltered,
-          };   
+        // case FILTER_BY_DIETS:
+        //   const allRecipesFiltered = state.recipes.filter(
+        //       (recipe) => recipe.diets.includes(payload)
+        //     );
+        //     console.log(allRecipesFiltered)
+        //     return {
+        //       ...state,
+        //      recipes: allRecipesFiltered
+        //     };  
+case FILTER_BY_DIETS:
+  const allRecipes = state.recipes;
+  console.log(allRecipes);
+  const typeDietFilter = payload === "All" ? allRecipes : allRecipes.filter(recipe => recipe.diets.includes(payload))
+    return {
+      ...state,
+      filteredRecipes: typeDietFilter
+    }
     case ORDER_ALPHABETIC:
         return {
             ...state,
