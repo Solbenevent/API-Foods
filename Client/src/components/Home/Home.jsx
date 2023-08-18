@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import Cards from "../Cards/Cards";
 import Pagination from "../Pagination/Pagination";
+import AdvancedPagination from "../Pagination/AdvancedPagination";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getDiets,
@@ -139,12 +140,20 @@ const Home = () => {
 
       <h1>¡Welcome! Here are the recipes you are looking for</h1>
 
-      <div>
+      {/* <div>
         <Pagination
           recipePerPage={recipesPerPage}
           totalRecipes={recipes?.length}
           currentPage={currentPage}
           handlePaginate={handlePaginate}
+        />
+      </div> */}
+      <div>
+        <AdvancedPagination
+          currentPage={currentPage}
+          handlePaginate={handlePaginate}
+          recipesPerPage={recipesPerPage}
+          totalRecipes={recipes?.length}
         />
       </div>
       <div>

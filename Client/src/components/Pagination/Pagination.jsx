@@ -8,23 +8,6 @@ const Pagination = ({
 }) => {
   const pageNumbers = Math.ceil(totalRecipes / recipePerPage);
 
-  // const renderPageNumbers = () => {
-  //   const buttons = [];
-  //   const start = Math.max(currentPage - 1, 1)
-  //   const end = Math.min(currentPage + 1, pageNumbers);
-  //   for (let i = start; i <= end; i++){
-  //       buttons.push(
-  //           <li
-  //           key={i}
-  //           onClick = {() => handlePaginate(i)}
-  //           >
-  //               {i}
-  //           </li>
-  //       )
-  //   }
-  //   return buttons;
-  // }
-
   const renderPageNumbers = () => {
     const buttons = [];
     for (let i = 1; i <= pageNumbers; i++) {
