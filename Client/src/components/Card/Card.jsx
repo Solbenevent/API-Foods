@@ -29,7 +29,7 @@ const CardRecipe = ({ id, name, image, diets }) => {
             <ListGroup.Item key={index}>{diet}</ListGroup.Item>
           ))}
         </Card.Text>
-        <Card.Link href={`/detail/{id}`}>Go!</Card.Link>
+        <Card.Link href={`/detail/${id}`}>Go!</Card.Link>
       </Card.Body>
     </Card>
   );

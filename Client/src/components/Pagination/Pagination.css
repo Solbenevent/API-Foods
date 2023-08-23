@@ -1,0 +1,28 @@
+.container-pag {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Ajusta el margen superior según tus necesidades */
+  }
+  
+  .container-btn {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .container-btn li {
+    margin: 0 5px; /* Ajusta el espaciado entre los botones */
+  }
+  
+  .btn-pag {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-pag:hover {
+    background-color: #ccc;
+  }
+  

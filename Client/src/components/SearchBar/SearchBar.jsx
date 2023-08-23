@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipes, getRecipeName } from "../../Redux/actions";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
 import "../SearchBar/SearchBar.css";
 
 const SearchBar = ({ setCurrentPage }) => {
@@ -33,7 +35,11 @@ const SearchBar = ({ setCurrentPage }) => {
     }
   };
   return (
-    <div>
+    <Nav
+      className="me-auto my-2 my-lg-0"
+      style={{ maxHeight: "100px" }}
+      navbarScroll
+    >
       <div>
         <input
           type="text"
@@ -50,11 +56,14 @@ const SearchBar = ({ setCurrentPage }) => {
           Buscar
         </button>
 
-        <Link to="/create">
+        {/* <Link to="/create">
           <button className="create-recipe">Create a Recipe!</button>
-        </Link>
+        </Link> */}
+        <Nav>
+          <Nav.Link href="/create">Create a Recipe</Nav.Link>
+        </Nav>
       </div>
-    </div>
+    </Nav>
   );
 };
 

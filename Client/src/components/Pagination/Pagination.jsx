@@ -1,4 +1,5 @@
 import React from "react";
+import "../Pagination/Pagination.css";
 
 const Pagination = ({
   recipePerPage,
@@ -45,13 +46,45 @@ const Pagination = ({
   };
 
   return (
-    <div>
-      <ul>
-        <button onClick={handleFirstPage}>First</button>
+    // <div className="container-pag">
+    //   <ul className="container-btn">
+    //     <li>
+    //       <button onClick={handleFirstPage} className="btn-pag">
+    //         First
+    //       </button>
+    //     </li>
+    //     <li>
+    //       <button onClick={handlePrev} className="btn-pag">
+    //         Prev
+    //       </button>
+    //     </li>
+    //     <li>{renderPageNumbers()}</li>
+    //     <li>
+    //       <button onClick={handleNext} className="btn-pag">
+    //         last
+    //       </button>
+    //     </li>
+    //   </ul>
+    // </div>
 
-        <button onClick={handlePrev}>Prev</button>
+    <div className="container-pag">
+      <ul className="container-btn">
+        <li>
+          <button onClick={handleFirstPage} className="btn-pag">
+            First
+          </button>
+        </li>
+        <li>
+          <button onClick={handlePrev} className="btn-pag">
+            Prev
+          </button>
+        </li>
         {renderPageNumbers()}
-        <button onClick={handleNext}>last</button>
+        <li>
+          <button onClick={handleNext} className="btn-pag">
+            Last
+          </button>
+        </li>
       </ul>
     </div>
   );

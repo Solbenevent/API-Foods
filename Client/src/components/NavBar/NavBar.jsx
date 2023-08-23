@@ -1,12 +1,13 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 const NavBar = ({ setCurrentPage }) => {
   return (
     <nav>
-      <div>
-        <SearchBar setCurrentPage={setCurrentPage} />
-      </div>
+      <SearchBar setCurrentPage={setCurrentPage} />
     </nav>
   );
 };
