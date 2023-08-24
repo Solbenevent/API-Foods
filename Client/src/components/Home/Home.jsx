@@ -74,7 +74,7 @@ const Home = () => {
   return (
     <div>
       <NavBar setCurrentPage={setCurrentPage} />
-      <div className="container-filters">
+      {/* <div className="container-filters">
         <div>
           <select
             name="Origin"
@@ -136,7 +136,7 @@ const Home = () => {
         <div>
           <button onClick={resetAll}>Reset</button>
         </div>
-      </div>
+      </div> */}
 
       <h1>¡Welcome! Here are the recipes you are looking for</h1>
 
