@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDiets, getRecipes, filterByDiets } from "../../Redux/actions";
+import { getRecipes, orderAlphabetic } from "../../Redux/actions";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
@@ -33,7 +33,7 @@ const CustomMenu = React.forwardRef(
         <Form.Control
           autoFocus
           className="mx-3 my-2 w-auto"
-          placeholder="Type to filter..."
+          placeholder="Type to order..."
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
@@ -48,50 +48,15 @@ const CustomMenu = React.forwardRef(
   }
 );
 
-const FiltersDropdown = ({ setCurrentPage }) => {
-  const diets = useSelector((state) => state.diets);
-  const dispatch = useDispatch();
-  //const [selectedDiet, setSelectedDiet] = useState(null);
-
-  useEffect(() => {
-    dispatch(getDiets());
-  }, [dispatch]);
-
-  const handleAllRecipes = (selectedValue) => {
-    if (selectedValue === "all") {
-      dispatch(getRecipes());
-      setCurrentPage(1);
-    }
-  };
-
-  const handleSelectedDiet = (diet) => {
-    // dispatch(filterByDiets(diet));
-    // setCurrentPage(1);
-    // if (!diet) return dispatch(getRecipes());
-    if (diet) {
-      dispatch(filterByDiets(diet));
-      setCurrentPage(1);
-    }
-  };
-
+const CustomOrder = ({ setCurrentPage }) => {
   return (
     <Dropdown>
-      <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-        Dietas
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu as={CustomMenu}>
-        <Dropdown.Item onClick={() => handleSelectedDiet("all")}>
-          All
-        </Dropdown.Item>
-        {diets?.map((diet, index) => (
-          <Dropdown.Item key={index} onClick={() => handleSelectedDiet(diet)}>
-            {diet}
-          </Dropdown.Item>
-        ))}
-      </Dropdown.Menu>
+      <Dropdown.Menu>Ordenar</Dropdown.Menu>
+      <Dropdown.Item>All</Dropdown.Item>
+      <Dropdown.Item>A-Z</Dropdown.Item>
+      <Dropdown.Item>Z-A</Dropdown.Item>
     </Dropdown>
   );
 };
 
-export default FiltersDropdown;
+export default CustomOrder;

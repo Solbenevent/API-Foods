@@ -21,7 +21,7 @@ const Home = () => {
   //const { recipes, diets, filteredRecipes } = useSelector((state) => state);
   const recipes = useSelector((state) => state.recipes);
   const diets = useSelector((state) => state.diets);
-  const filteredRecipes = useSelector((state) => state.filteredRecipes);
+  const filteredRecipe = useSelector((state) => state.filteredRecipe);
 
   const [currentPage, setCurrentPage] = useState(1);
   const recipesPerPage = 10;
@@ -150,9 +150,7 @@ const Home = () => {
       </div>
       <div>
         <Cards
-          recipes={
-            filteredRecipes.length > 0 ? filteredRecipes : currentRecipes
-          }
+          recipes={filteredRecipe.length > 0 ? filteredRecipe : currentRecipes}
         />
       </div>
     </div>

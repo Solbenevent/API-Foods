@@ -4,7 +4,7 @@ const initialState = {
     recipes: [],
     detailRecipes: {},
     diets: [], 
-    filteredRecipes: [],
+    filteredRecipe: [],
    
 }
 
@@ -45,21 +45,38 @@ const reducer = (state = initialState, {type, payload}) => {
         }
         // case FILTER_BY_DIETS:
         //   const allRecipesFiltered = state.recipes.filter(
-        //       (recipe) => recipe.diets.includes(payload)
+        //       (recipe) => recipe?.diets.includes(payload)
         //     );
         //     console.log(allRecipesFiltered)
         //     return {
         //       ...state,
-        //      recipes: allRecipesFiltered
+        //      recipes: allRecipesFiltered,
+        //      filteredRecipes: allRecipesFiltered
         //     };  
-case FILTER_BY_DIETS:
-  const allRecipes = state.recipes;
-  console.log(allRecipes);
-  const typeDietFilter = payload === "All" ? allRecipes : allRecipes.filter(recipe => recipe.diets.includes(payload))
-    return {
-      ...state,
-      filteredRecipes: typeDietFilter
-    }
+        // case FILTER_BY_DIETS:
+        //   console.log("Payload:", payload);
+        //   const allRecipesFiltered = state.recipes.filter(
+        //     (recipe) => recipe.diets.includes(payload)
+        //   );
+        //   console.log("Filtered Recipes:", allRecipesFiltered);
+        //   return {
+        //     ...state,
+        //     filteredRecipes: allRecipesFiltered,
+        //     recipes: allRecipesFiltered
+        //   };
+        case FILTER_BY_DIETS:
+  console.log("Payload:", payload);
+  console.log("Recipes:", state.recipes);
+  const allRecipesFiltered = state.recipes.filter(
+    (recipe) => recipe.diets.some(diet => diet.name.toLowerCase() === payload.toLowerCase())
+  );
+  console.log("Filtered Recipes:", allRecipesFiltered);
+  return {
+    ...state,
+    filteredRecipe: allRecipesFiltered
+  };
+
+
     case ORDER_ALPHABETIC:
         return {
             ...state,
