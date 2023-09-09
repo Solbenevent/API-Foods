@@ -49,12 +49,34 @@ const CustomMenu = React.forwardRef(
 );
 
 const CustomOrder = ({ setCurrentPage }) => {
+  //HOOKS
+  const dispatch = useDispatch();
+
+  //HANDLERS
+  const handleSelectOrder = (option) => {
+    if (option === "all") {
+      dispatch(getRecipes()); // Obtener recetas originales
+    } else {
+      dispatch(orderAlphabetic(option)); // Ordenar por opción seleccionada
+    }
+    setCurrentPage(1);
+  };
+
+  //RENDER!!
   return (
     <Dropdown>
-      <Dropdown.Menu>Ordenar</Dropdown.Menu>
-      <Dropdown.Item>All</Dropdown.Item>
-      <Dropdown.Item>A-Z</Dropdown.Item>
-      <Dropdown.Item>Z-A</Dropdown.Item>
+      <Dropdown.Toggle as={CustomToggle}>Ordenar</Dropdown.Toggle>
+      <Dropdown.Menu as={CustomMenu}>
+        <Dropdown.Item onClick={() => handleSelectOrder("all")}>
+          All
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSelectOrder("A-Z")}>
+          A-Z
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSelectOrder("Z-A")}>
+          Z-A
+        </Dropdown.Item>
+      </Dropdown.Menu>
     </Dropdown>
   );
 };

@@ -13,12 +13,13 @@ const reducer = (state = initialState, {type, payload}) => {
     case GET_RECIPES:
         return {
             ...state,
-            recipes: payload
+            recipes: payload,
+            filteredRecipe: payload
         }
     case GET_RECIPE_NAME:
       return {
         ...state,
-       filteredRecipes: payload
+       filteredRecipe: payload
       }    
     case CREATE_RECIPE:
       return{
@@ -77,14 +78,17 @@ const reducer = (state = initialState, {type, payload}) => {
   };
 
 
-    case ORDER_ALPHABETIC:
-        return {
-            ...state,
-            recipes:
-              payload === "A-Z"
-                ? state.recipes.sort((a, b) => a.name.localeCompare(b.name))
-                : state.recipes.sort((a, b) => b.name.localeCompare(a.name)),
-          };
+  case ORDER_ALPHABETIC:
+    console.log("Payload:", payload); 
+    const sortedRecipes = payload === "A-Z"
+      ? state.recipes.slice().sort((a, b) => a.name.localeCompare(b.name))
+      : state.recipes.slice().sort((a, b) => b.name.localeCompare(a.name));
+  
+    return {
+      ...state,
+      filteredRecipe: sortedRecipes,
+    };
+  
     case ORDER_HEALTHSCORE:
         return {
             ...state,
