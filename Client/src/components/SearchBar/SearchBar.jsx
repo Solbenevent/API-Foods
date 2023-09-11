@@ -1,69 +1,46 @@
-import React from "react";
-//import searchImage from "../Images/busqueda.png"
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getRecipes, getRecipeName } from "../../Redux/actions";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import "../SearchBar/SearchBar.css";
+import React, { useState } from "react";
+//import { FontAwesomeIcon } from "@fortawesome/free-solid-svg-icons"; // Importa el ícono de búsqueda
+import { Nav } from "react-bootstrap";
 
 const SearchBar = ({ setCurrentPage }) => {
-  const [input, setInput] = useState(""); //el estado input se inicializa con una cadena vacia
-  const dispatch = useDispatch();
+  const [input, setInput] = useState("");
+
+  const handlerInput = (e) => {
+    setInput(e.target.value);
+  };
 
   const searchHandler = () => {
-    if (input) {
-      dispatch(getRecipeName(input));
-      setCurrentPage(1);
-    } else {
-      dispatch(getRecipes());
+    // Tu lógica de búsqueda aquí
+    // setCurrentPage("search"); // Si deseas actualizar la página
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      searchHandler();
     }
   };
 
-  const handlerInput = (event) => {
-    if (!event.target.value) {
-      dispatch(getRecipes());
-      setInput("");
-    } else {
-      setInput(event.target.value);
-    }
-  };
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      searchHandler(event);
-    }
-  };
   return (
-    <Nav
-      className="me-auto my-2 my-lg-0"
-      style={{ maxHeight: "100px" }}
-      navbarScroll
-    >
-      <div>
-        <input
-          type="text"
-          name="search"
-          placeholder="Recipe"
-          value={input}
-          onChange={handlerInput}
-          onKeyDown={handleKeyPress}
-          autoComplete="off"
-        />
-        {/* <button onClick={searchHandler} value={input} className="search-btn"><img src={searchImage} alt="search" className="btn-search"/></button> */}
-        <button onClick={() => searchHandler()} className="search-btn">
-          {/* <img src={searchImage} alt="search" className="btn-search" /> */}
-          Buscar
-        </button>
-
-        {/* <Link to="/create">
-          <button className="create-recipe">Create a Recipe!</button>
-        </Link> */}
-        <Nav>
-          <Nav.Link href="/create">Create a Recipe</Nav.Link>
-        </Nav>
-      </div>
-    </Nav>
+    <div className="d-flex align-items-center ml-auto">
+      <input
+        type="text"
+        name="search"
+        placeholder="Search..."
+        value={input}
+        onChange={handlerInput}
+        onKeyDown={handleKeyPress}
+        autoComplete="on"
+      />
+      <button onClick={searchHandler} className="btn btn-primary ml-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 512 512"
+        >
+          <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+        </svg>
+      </button>
+    </div>
   );
 };
 

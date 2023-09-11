@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDiets, getRecipes, filterByDiets } from "../../Redux/actions";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
+import "./Dropdown.css";
+
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -75,7 +77,7 @@ const FiltersDropdown = ({ setCurrentPage }) => {
   };
 
   return (
-    <Dropdown>
+    <Dropdown className="custom-dropdown">
       <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
         Dietas
       </Dropdown.Toggle>

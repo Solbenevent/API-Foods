@@ -1,0 +1,8 @@
+/* styles.css (o tu archivo CSS personalizado) */
+
+/* Aplica estilos a tus Dropdowns personalizados */
+.custom-dropdown {
+    margin-right: 15px; /* Ajusta la separación deseada */
+    text-align: flex-end;
+  }
+  

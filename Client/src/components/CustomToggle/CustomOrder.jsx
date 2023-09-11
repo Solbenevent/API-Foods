@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipes, orderAlphabetic } from "../../Redux/actions";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
+import "./Dropdown.css";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -64,7 +65,7 @@ const CustomOrder = ({ setCurrentPage }) => {
 
   //RENDER!!
   return (
-    <Dropdown>
+    <Dropdown className="custom-dropdown">
       <Dropdown.Toggle as={CustomToggle}>Ordenar</Dropdown.Toggle>
       <Dropdown.Menu as={CustomMenu}>
         <Dropdown.Item onClick={() => handleSelectOrder("all")}>
