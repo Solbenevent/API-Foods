@@ -65,7 +65,7 @@ const CustomOrder = ({ setCurrentPage }) => {
 
   //RENDER!!
   return (
-    <Dropdown className="custom-dropdown">
+    <Dropdown className="custom-dropdown1">
       <Dropdown.Toggle as={CustomToggle}>Ordenar</Dropdown.Toggle>
       <Dropdown.Menu as={CustomMenu}>
         <Dropdown.Item onClick={() => handleSelectOrder("all")}>

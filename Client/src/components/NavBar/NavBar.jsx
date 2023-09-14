@@ -16,15 +16,34 @@ const NavBar = ({ setCurrentPage }) => {
           <img src={image} className="logo" />
         </a>
         <div className="collapse navbar-collapse" id="navbarNav">
+          {/* <ul className="navbar-nav flex-row ms-auto">
+            <li className="nav-item margin-right-1">
+              <FiltersDropdown setCurrentPage={setCurrentPage} />
+            </li>
+            <li className="nav-item margin-right-2">
+              <CustomOrder setCurrentPage={setCurrentPage} />
+            </li>
+          </ul>
           <ul className="navbar-nav flex-row ms-auto">
+            <li className="nav-item margin-right-1 ml-auto w-auto">
+              <SearchBar setCurrentPage={setCurrentPage} />
+            </li>
+            <li className="nav-item margin-right-2 ml-auto w-auto">
+              <a className="nav-link" href="/create">
+                Create a Recipe
+              </a>
+            </li>
+          </ul> */}
+          <ul
+            className="navbar-nav flex-row ms-auto"
+            style={{ marginLeft: "-10px" }}
+          >
             <li className="nav-item margin-right-1">
               <FiltersDropdown setCurrentPage={setCurrentPage} />
             </li>
             <li className="nav-item margin-right-1">
               <CustomOrder setCurrentPage={setCurrentPage} />
             </li>
-          </ul>
-          <ul className="navbar-nav flex-row ms-auto">
             <li className="nav-item margin-right-1 ml-auto w-auto">
               <SearchBar setCurrentPage={setCurrentPage} />
             </li>

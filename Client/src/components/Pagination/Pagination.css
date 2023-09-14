@@ -11,15 +11,18 @@
   }
   
   .container-btn li {
-    margin: 0 5px; /* Ajusta el espaciado entre los botones */
+    margin: 0 3px; /* Ajusta el espaciado entre los botones */
   }
   
   .btn-pag {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
-    padding: 5px 10px;
+    padding: 5px 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+  }
+  .btn-pag li{
+    padding: 5px;
   }
   
   .btn-pag:hover {

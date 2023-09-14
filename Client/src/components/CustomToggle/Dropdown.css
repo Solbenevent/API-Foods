@@ -2,7 +2,13 @@
 
 /* Aplica estilos a tus Dropdowns personalizados */
 .custom-dropdown {
-    margin-right: 15px; /* Ajusta la separación deseada */
-    text-align: flex-end;
-  }
+    margin-left: 100px;
+    margin-bottom: 10px;
+    display: flex;
+   margin-right: 20px;
+}
+
+.custom-dropdown1{
+  margin-right: 30px;
+}
   

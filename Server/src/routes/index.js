@@ -1,4 +1,6 @@
 const { Router } = require('express');
+const multer = require("multer");
+
 const { getRecipeById  } = require("../controllers/getRecipeById");
 //const  { getRecipes }  = require("../controllers/getAllRecipes");
 const { fetchAndSaveRecipes } = require("../controllers/getAllRecipes");
@@ -12,6 +14,8 @@ const { deleteRecipe } = require("../controllers/deleteRecipe")
 
 const router = Router();
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -20,7 +24,7 @@ router.get("/recipes", fetchAndSaveRecipes)
 router.get("/recipes/name", searchRecipesNames);
 router.get("/recipes/:id", getRecipeById );
 router.get("/diets", fetchAndSavedDiets);
-router.post("/recipes", createRecipes);
+router.post("/recipes", upload.single("image"), createRecipes);
 
 
 module.exports = router;

@@ -15,6 +15,8 @@ const CreateRecipe = () => {
   const diets = useSelector((state) => state.diets);
 
   //local States
+  const [selectedImage, setSelectedImage] = useState(null);
+
   //useEffect
   useEffect(() => {
     dispatch(getDiets());
@@ -30,6 +32,8 @@ const CreateRecipe = () => {
   } = useForm({ defaultValues: { diets: [] } });
 
   const selectedDiets = watch("diets");
+
+  //Converting Image
 
   //Manejo envío de formulario
   const onSubmit = async (data) => {
@@ -47,7 +51,9 @@ const CreateRecipe = () => {
         steps: steps.split("\n"),
       };
 
+      console.log(formData);
       await axios.post("http://localhost:3001/recipes", formData);
+      console.log("hola");
       console.log(formData);
     } catch (error) {
       console.log(error);
