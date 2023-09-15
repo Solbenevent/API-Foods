@@ -3,7 +3,8 @@ const multer = require("multer");
 
 const { getRecipeById  } = require("../controllers/getRecipeById");
 //const  { getRecipes }  = require("../controllers/getAllRecipes");
-const { fetchAndSaveRecipes } = require("../controllers/getAllRecipes");
+//const { fetchAndSaveRecipes } = require("../controllers/getAllRecipes");
+const { paginateRecipes } = require("../controllers/paginatedRecipes");
 const { searchRecipesNames} = require("../controllers/getRecipeByName");
 const {fetchAndSavedDiets } = require("../controllers/getAllDiets");
 const { createRecipes } = require("../controllers/createRecipes");
@@ -20,7 +21,8 @@ const upload = multer({ storage: storage });
 // Ejemplo: router.use('/auth', authRouter);
 
 
-router.get("/recipes", fetchAndSaveRecipes)
+//router.get("/recipes", fetchAndSaveRecipes)
+router.get("/recipes", paginateRecipes)
 router.get("/recipes/name", searchRecipesNames);
 router.get("/recipes/:id", getRecipeById );
 router.get("/diets", fetchAndSavedDiets);

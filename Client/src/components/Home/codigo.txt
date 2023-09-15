@@ -1,0 +1,32 @@
+  const filterHandler = (e) => {
+    const { name, value } = e.target;
+    if (name === "Diets") {
+      dispatch(filterByDiets(value));
+      setCurrentPage(1);
+    } else {
+      dispatch(filterByOrigin(value));
+      setCurrentPage(1);
+    }
+    if (value === "All") {
+      dispatch(getRecipes());
+    }
+  };
+
+  const orderHandler = (e) => {
+    const { name, value } = e.target;
+    if (name === "Alphabetic") {
+      dispatch(orderAlphabetic(value));
+    } else {
+      dispatch(orderByHealthScore(value));
+    }
+  };
+
+  const resetAll = () => {
+    dispatch(deleteFilters());
+    const selectElements = document.getElementsByTagName("select");
+    for (let i = 0; i < selectElements.length; i++) {
+      selectElements[i].selectedIndex = 0;
+    }
+    dispatch(getRecipes());
+  };
+

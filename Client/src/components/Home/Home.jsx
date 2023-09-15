@@ -1,151 +1,89 @@
-import React from "react";
+import React, { useCallback } from "react";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import NavBar from "../NavBar/NavBar";
+
 import Cards from "../Cards/Cards";
 import Pagination from "../Pagination/Pagination";
+import MyPagination from "../Pagination/Pagination";
 //import AdvancedPagination from "../Pagination/AdvancedPagination";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getDiets,
-  filterByDiets,
-  orderAlphabetic,
-  orderByHealthScore,
-  filterByOrigin,
-  deleteFilters,
-  getRecipes,
-} from "../../Redux/actions";
+import { getDiets } from "../../Redux/actions";
 import "../Home/Home.css";
+import { Nav } from "react-bootstrap";
 
 const Home = () => {
   const dispatch = useDispatch();
-  //const { recipes, diets, filteredRecipes } = useSelector((state) => state);
-  const recipes = useSelector((state) => state.recipes);
-  const diets = useSelector((state) => state.diets);
+  //const recipes = useSelector((state) => state.recipes);
   const filteredRecipe = useSelector((state) => state.filteredRecipe);
 
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const recipesPerPage = 10;
+
+  // const indexOfLastRecipe = currentPage * recipesPerPage;
+  // const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  // const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  // const totalPages = Math.ceil(recipes.length / recipesPerPage);
+
+  // const handlePaginate = (pageNumber) => {
+  //   if (pageNumber >= 1 && pageNumber <= totalPages) {
+  //     setCurrentPage(pageNumber);
+  //   }
+  // };
+
+  //!
   const [currentPage, setCurrentPage] = useState(1);
-  const recipesPerPage = 10;
+  const [recipes, setRecipes] = useState([]);
+  const [totalRecipes, setTotalRecipes] = useState(0);
+  const recipesPerPage = 10; // Declarar recipesPerPage y asignar un valor adecuado
 
-  const handlePaginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  let currentRecipes = [];
 
-  const indexOfLastRecipe = currentPage * recipesPerPage;
-  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-  const currentRecipes =
-    recipes?.length > 0 && recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3001/recipes?page=${currentPage}&recipesPerPage=${recipesPerPage}`
+      )
+      .then((response) => {
+        console.log("Respuesta de la solicitud:", response.data); // Agrega esta línea para depurar
+        const receivedRecipes = response.data.recipes;
+        setCurrentRecipes(receivedRecipes); // Actualiza el estado currentRecipes
+        setTotalRecipes(response.data.totalRecipes);
+      })
+      .catch((error) => {
+        console.log(error);
+        throw new Error("Soy el catch del useEff");
+      });
+  }, [currentPage]);
 
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
 
-  const filterHandler = (e) => {
-    const { name, value } = e.target;
-    if (name === "Diets") {
-      dispatch(filterByDiets(value));
-      setCurrentPage(1);
-    } else {
-      dispatch(filterByOrigin(value));
-      setCurrentPage(1);
+  const handlePaginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
     }
-    if (value === "All") {
-      dispatch(getRecipes());
-    }
-  };
-
-  const orderHandler = (e) => {
-    const { name, value } = e.target;
-    if (name === "Alphabetic") {
-      dispatch(orderAlphabetic(value));
-    } else {
-      dispatch(orderByHealthScore(value));
-    }
-  };
-
-  const resetAll = () => {
-    dispatch(deleteFilters());
-    const selectElements = document.getElementsByTagName("select");
-    for (let i = 0; i < selectElements.length; i++) {
-      selectElements[i].selectedIndex = 0;
-    }
-    dispatch(getRecipes());
   };
 
   return (
     <div>
       <NavBar setCurrentPage={setCurrentPage} />
-      {/* <div className="container-filters">
-        <div>
-          <select
-            name="Origin"
-            onChange={filterHandler}
-            defaultValue="Filter By Origin"
-            className="select-origin"
-          >
-            <option disabled>Filter By</option>
-            <option value="All">All</option>
-            <option value="Api">Api</option>
-            <option value="DataBase">DataBase</option>
-          </select>
-        </div>
-
-        <div>
-          <select
-            name="Diets"
-            onChange={filterHandler}
-            defaultValue="Filter By Diets"
-            className="select-diets"
-          >
-            <option>Filter By</option>
-            <option value="All">All</option>
-            {diets?.map((diet) => {
-              return (
-                <option value={diet} key={diet.id}>
-                  {diet}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-
-        <div>
-          <select
-            name="Alphabetic"
-            onChange={orderHandler}
-            defaultValue="Alphabetic Order"
-            className="select-order"
-          >
-            <option disabled>Order By</option>
-            <option value="A-Z">A-Z</option>
-            <option value="Z-A">Z-A</option>
-          </select>
-        </div>
-
-        <div>
-          <select
-            name="HealthScore"
-            onChange={orderHandler}
-            defaultValue="HealthScore Order"
-            className="select-score"
-          >
-            <option disabled> Order By</option>
-            <option value="Ascendente">Lowest Score</option>
-            <option value="Descendente">Highest Score</option>
-          </select>
-        </div>
-        <div>
-          <button onClick={resetAll}>Reset</button>
-        </div>
-      </div> */}
 
       <h1>¡Welcome! Here are the recipes you are looking for</h1>
 
       <div>
         <Pagination
-          recipePerPage={recipesPerPage}
-          totalRecipes={recipes?.length}
+          // recipesPerPage={recipesPerPage}
+          // totalPages={totalPages} // Cambia esta línea
+          // totalRecipes={recipes?.length}
+          // currentPage={currentPage}
+          // handlePaginate={handlePaginate}
+          recipesPerPage={recipesPerPage}
+          totalRecipes={totalRecipes}
           currentPage={currentPage}
           handlePaginate={handlePaginate}
+          currentRecipes={currentRecipes}
         />
       </div>
       <div>
