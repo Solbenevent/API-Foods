@@ -19,7 +19,8 @@ const reducer = (state = initialState, {type, payload}) => {
     case GET_RECIPE_NAME:
       return {
         ...state,
-       filteredRecipe: payload
+       //filteredRecipe: payload
+       recipes: payload
       }    
     case CREATE_RECIPE:
       return{
@@ -44,27 +45,6 @@ const reducer = (state = initialState, {type, payload}) => {
             ...state,
             diets: payload
         }
-        // case FILTER_BY_DIETS:
-        //   const allRecipesFiltered = state.recipes.filter(
-        //       (recipe) => recipe?.diets.includes(payload)
-        //     );
-        //     console.log(allRecipesFiltered)
-        //     return {
-        //       ...state,
-        //      recipes: allRecipesFiltered,
-        //      filteredRecipes: allRecipesFiltered
-        //     };  
-        // case FILTER_BY_DIETS:
-        //   console.log("Payload:", payload);
-        //   const allRecipesFiltered = state.recipes.filter(
-        //     (recipe) => recipe.diets.includes(payload)
-        //   );
-        //   console.log("Filtered Recipes:", allRecipesFiltered);
-        //   return {
-        //     ...state,
-        //     filteredRecipes: allRecipesFiltered,
-        //     recipes: allRecipesFiltered
-        //   };
         case FILTER_BY_DIETS:
   console.log("Payload:", payload);
   console.log("Recipes:", state.recipes);
@@ -74,19 +54,21 @@ const reducer = (state = initialState, {type, payload}) => {
   console.log("Filtered Recipes:", allRecipesFiltered);
   return {
     ...state,
-    filteredRecipe: allRecipesFiltered
+    //filteredRecipe: allRecipesFiltered
+    recipes: allRecipesFiltered
   };
 
 
   case ORDER_ALPHABETIC:
     console.log("Payload:", payload); 
-    const sortedRecipes = payload === "A-Z"
+    const sortedRecipes = payload === "asc"
       ? state.recipes.slice().sort((a, b) => a.name.localeCompare(b.name))
       : state.recipes.slice().sort((a, b) => b.name.localeCompare(a.name));
   
     return {
       ...state,
-      filteredRecipe: sortedRecipes,
+      //filteredRecipe: sortedRecipes,
+      recipes: sortedRecipes
     };
   
     case ORDER_HEALTHSCORE:

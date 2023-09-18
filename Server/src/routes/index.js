@@ -8,7 +8,8 @@ const { paginateRecipes } = require("../controllers/paginatedRecipes");
 const { searchRecipesNames} = require("../controllers/getRecipeByName");
 const {fetchAndSavedDiets } = require("../controllers/getAllDiets");
 const { createRecipes } = require("../controllers/createRecipes");
-const { deleteRecipe } = require("../controllers/deleteRecipe")
+const { deleteRecipe } = require("../controllers/deleteRecipe");
+const { filterAndSortRecipes } = require('../controllers/filterAndSortRecipes');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -24,6 +25,7 @@ const upload = multer({ storage: storage });
 //router.get("/recipes", fetchAndSaveRecipes)
 router.get("/recipes", paginateRecipes)
 router.get("/recipes/name", searchRecipesNames);
+router.get("/recipes/filter", filterAndSortRecipes)
 router.get("/recipes/:id", getRecipeById );
 router.get("/diets", fetchAndSavedDiets);
 router.post("/recipes", upload.single("image"), createRecipes);

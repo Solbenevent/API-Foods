@@ -1,11 +1,18 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import FiltersDropdown from "../CustomToggle/CustomToggle";
-import CustomOrder from "../CustomToggle/CustomOrder";
+//import FiltersDropdown from "../CustomToggle/CustomToggle";
+//import CustomOrder from "../CustomToggle/CustomOrder";
 import image from "../Images/verdebendito.png";
 import "./NavBar.css";
 
-const NavBar = ({ setCurrentPage }) => {
+const NavBar = ({
+  setCurrentPage,
+  currentDiet,
+  setCurrentDiet,
+  currentOrder,
+  setCurrentOrder,
+  handleFilterChange, // Asegúrate de recibir handleFilterChange como prop
+}) => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
@@ -16,34 +23,25 @@ const NavBar = ({ setCurrentPage }) => {
           <img src={image} className="logo" />
         </a>
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* <ul className="navbar-nav flex-row ms-auto">
-            <li className="nav-item margin-right-1">
-              <FiltersDropdown setCurrentPage={setCurrentPage} />
-            </li>
-            <li className="nav-item margin-right-2">
-              <CustomOrder setCurrentPage={setCurrentPage} />
-            </li>
-          </ul>
-          <ul className="navbar-nav flex-row ms-auto">
-            <li className="nav-item margin-right-1 ml-auto w-auto">
-              <SearchBar setCurrentPage={setCurrentPage} />
-            </li>
-            <li className="nav-item margin-right-2 ml-auto w-auto">
-              <a className="nav-link" href="/create">
-                Create a Recipe
-              </a>
-            </li>
-          </ul> */}
           <ul
             className="navbar-nav flex-row ms-auto"
             style={{ marginLeft: "-10px" }}
           >
-            <li className="nav-item margin-right-1">
-              <FiltersDropdown setCurrentPage={setCurrentPage} />
+            {/* <li className="nav-item margin-right-1">
+              <FiltersDropdown
+                setCurrentPage={setCurrentPage}
+                currentDiet={currentDiet}
+                setCurrentDiet={setCurrentDiet}
+                handleFilterChange={handleFilterChange}
+              />
             </li>
             <li className="nav-item margin-right-1">
-              <CustomOrder setCurrentPage={setCurrentPage} />
-            </li>
+              <CustomOrder
+                setCurrentPage={setCurrentPage}
+                currentOrder={currentOrder}
+                setCurrentOrder={setCurrentOrder}
+              />
+            </li> */}
             <li className="nav-item margin-right-1 ml-auto w-auto">
               <SearchBar setCurrentPage={setCurrentPage} />
             </li>
