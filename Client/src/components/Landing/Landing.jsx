@@ -1,25 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import cooking from "../Images/cooking.png";
+import { useNavigate } from "react-router-dom";
+
 import "../Landing/Landing.css";
-
 const Landing = () => {
-    return (
-     <div className="landing-container">
-        <div className="container-landing-img">
-            <img src ={cooking} alt="chef cooking"/>
-        </div>
-        <div className="landing-title">
-            <h1 className="welcome">WELCOME TO THE API FOODS</h1>
-        </div>
+  const navigate = useNavigate();
+  const handleGetStartedClick = () => {
+    navigate("/home");
+  };
 
-       
-            <Link to = "/home">
-            <button className="btn-landing">Ingresar</button>
-            </Link>
-
-     </div>
-    )
-}
+  return (
+    <div className="bg-image">
+      <div className="container">
+        <div className="animated-text">
+          <h1>¡Bienvenidos a Cocina Creativa!</h1>
+          <p className="get-started" onClick={handleGetStartedClick}>
+            Get Started
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Landing;

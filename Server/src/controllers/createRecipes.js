@@ -13,20 +13,16 @@ const createRecipes = async (req, res) => {
 } = req.body
 
  try {
+
     if(!name && !summary && !healthScore && !image && !diets) 
       return res.status(400).json({ message: "Debe completar los campos"}); 
       const selectedDiets = diets.map(diet => diet);
-    if(!req.file) {
-      return res.status(400).json({ message: "debe seleccionar una imagen"});
-    }
-    const imageName = req.file.name;
-
-
+ 
       const recipeCreated = await Recipe.create({
         name,
         summary,
         healthScore,
-        image: imageName,
+        image,
         steps,
         created: true,
       });

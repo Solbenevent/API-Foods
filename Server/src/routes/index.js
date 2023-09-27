@@ -16,8 +16,6 @@ const { filterAndSortRecipes } = require('../controllers/filterAndSortRecipes');
 
 const router = Router();
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -25,10 +23,10 @@ const upload = multer({ storage: storage });
 //router.get("/recipes", fetchAndSaveRecipes)
 router.get("/recipes", paginateRecipes)
 router.get("/recipes/name", searchRecipesNames);
-router.get("/recipes/filter", filterAndSortRecipes)
 router.get("/recipes/:id", getRecipeById );
+router.get("/recipes/filter", filterAndSortRecipes)
 router.get("/diets", fetchAndSavedDiets);
-router.post("/recipes", upload.single("image"), createRecipes);
+router.post("/recipes", createRecipes);
 
 
 module.exports = router;

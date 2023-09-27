@@ -66,8 +66,11 @@ const Home = () => {
           currentRecipes={currentRecipes}
         />
       </div>
-      <div>
+      {/* <div>
         <Cards recipes={recipes.length > 0 ? recipes : currentRecipes} />
+      </div> */}
+      <div>
+        <Cards recipes={filteredRecipe.length > 0 ? filteredRecipe : recipes} />
       </div>
     </div>
   );

@@ -40,22 +40,43 @@ export const DELETE_FILTERS = "DELETE_FILTERS";
     }
 }
 
-export const getRecipeName =  (name) => {
+// export const getRecipeName =  (name) => {
+//   const ENDPOINT = `http://localhost:3001/recipes/name?name=${name}`;
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.get(ENDPOINT);
+//       if(data) {
+//         return dispatch({
+//           type: GET_RECIPE_NAME,
+//           payload: data
+//         })
+//       }
+//     } catch (error) {
+//       alert("Recipe not found");
+//     }
+//   }
+// }
+
+export const getRecipeName = (name) => {
   const ENDPOINT = `http://localhost:3001/recipes/name?name=${name}`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(ENDPOINT);
-      if(data) {
+      if (data) {
+        console.log("Recetas filtradas:", data);
         return dispatch({
           type: GET_RECIPE_NAME,
           payload: data
-        })
+        });
       }
     } catch (error) {
+      console.error("Error al buscar recetas:", error); // Agregar console.error
       alert("Recipe not found");
     }
-  }
-}
+  };
+};
+
+
  
 
 

@@ -15,7 +15,6 @@ const CreateRecipe = () => {
   const diets = useSelector((state) => state.diets);
 
   //local States
-  const [selectedImage, setSelectedImage] = useState(null);
 
   //useEffect
   useEffect(() => {
@@ -57,7 +56,7 @@ const CreateRecipe = () => {
       console.log(formData);
     } catch (error) {
       console.log(error);
-      throw new Error("Error al enviar el formulario: " + error);
+      throw new Error("Error al enviar el formulario: " + "", error);
     }
   };
 
@@ -105,15 +104,13 @@ const CreateRecipe = () => {
           <FormLabel htmlFor="image">Imagen:</FormLabel>
           <Form.Control
             className="mb-3"
-            type="file"
+            type="text"
             id="inputImage"
             {...register("image", {
               required: true,
             })}
           />
-          {/* <Form.Text>
-            {errors.image && <span>La imagen es requerida</span>}
-          </Form.Text> */}
+
           {errors.image && (
             <Form.Text className="text-danger">
               La imagen es requerida

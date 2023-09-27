@@ -1,18 +1,9 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
-//import FiltersDropdown from "../CustomToggle/CustomToggle";
-//import CustomOrder from "../CustomToggle/CustomOrder";
 import image from "../Images/verdebendito.png";
 import "./NavBar.css";
 
-const NavBar = ({
-  setCurrentPage,
-  currentDiet,
-  setCurrentDiet,
-  currentOrder,
-  setCurrentOrder,
-  handleFilterChange, // Asegúrate de recibir handleFilterChange como prop
-}) => {
+const NavBar = ({ setCurrentPage }) => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
@@ -27,21 +18,6 @@ const NavBar = ({
             className="navbar-nav flex-row ms-auto"
             style={{ marginLeft: "-10px" }}
           >
-            {/* <li className="nav-item margin-right-1">
-              <FiltersDropdown
-                setCurrentPage={setCurrentPage}
-                currentDiet={currentDiet}
-                setCurrentDiet={setCurrentDiet}
-                handleFilterChange={handleFilterChange}
-              />
-            </li>
-            <li className="nav-item margin-right-1">
-              <CustomOrder
-                setCurrentPage={setCurrentPage}
-                currentOrder={currentOrder}
-                setCurrentOrder={setCurrentOrder}
-              />
-            </li> */}
             <li className="nav-item margin-right-1 ml-auto w-auto">
               <SearchBar setCurrentPage={setCurrentPage} />
             </li>

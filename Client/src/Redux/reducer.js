@@ -19,16 +19,15 @@ const reducer = (state = initialState, {type, payload}) => {
     case GET_RECIPE_NAME:
       return {
         ...state,
-       //filteredRecipe: payload
-       recipes: payload
+       //recipes: payload,
+       filteredRecipe: payload
+
       }    
     case CREATE_RECIPE:
       return{
         ...state,
         recipes: payload
       } 
-    // case DETAIL_RECIPE:
-    //     return {
     
     case DETAIL_RECIPE:
       return {
